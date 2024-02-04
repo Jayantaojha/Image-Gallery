@@ -1,0 +1,150 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+
+/* nav start */
+
+nav{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-top: 10px;    
+}
+
+.image img{
+    height: 80px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.input-search{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    column-gap: 10px;
+    background-color: #eeeeee;
+    width: 50vw;
+    height: 50px;
+    padding: 0px 0px 0px 16px;
+    border-radius: 24px;
+    border: 1px solid #0000;
+}
+
+#search-icon i{
+    color: #757779;
+}
+
+
+/* input in the navbar */
+#search-query{
+    /* height: 36px; */
+    width: 100%;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    font-size: 14px;
+
+}
+
+/* for smaller screens */
+@media only screen and (max-width: 600px){
+
+    nav{
+        margin-top: 5px;
+        flex-direction: column;
+        column-gap: 5px;
+    }
+
+    .image img{
+        height: 80px;
+        margin-right: 0px;
+    }
+
+    .input-search{
+        width: 80vw;
+    }
+}
+
+
+
+/* nav ends */
+
+
+
+
+/* for main */
+
+main{
+    padding: 15px 20px 30px 20px;
+    text-align: center;
+}
+
+main h1{
+    font-size: 26px;
+    color: #20123a;
+    margin-top: 10px;
+}
+
+.images-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+
+.images{
+    width: 100%;
+    height: 40vh;
+    margin-top: 20px;
+    border-radius: 6px;
+    object-fit: cover;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+main button{
+    font-size: 14px;
+    padding: 10px;
+    margin-top: 30px;
+    width: 30vw;
+    background-color: #33b249;
+    color: #fff;
+    outline: none;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; 
+}
+
+main button:hover{
+    background-color: #0e7a20;
+}
+
+
+/* for larger screens */
+@media only screen and (min-width: 600px){
+
+    main h1{
+        font-size: 32px;
+    }
+
+    .images-container{
+        flex-direction: row;
+        justify-content: space-between;
+        column-gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .images{
+        width: 31%;
+        height: 40vh;
+        margin-top: 25px;
+    }
+
+}
+
+
+
+/* main ends */
