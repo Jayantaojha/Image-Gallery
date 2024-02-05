@@ -16,6 +16,19 @@ let userQuery = localStorage.getItem('userQuery');
 })();
 
 
+inputSearch.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        if (inputSearch.value !== "") {
+            userQuery = inputSearch.value.trim();
+            console.log(userQuery);
+            inputSearch.value = userQuery;
+            heading.innerText = userQuery;
+            getPhoto();
+        }
+    }
+});
+
+
 async function getPhoto() {
     try {
 
@@ -30,25 +43,27 @@ async function getPhoto() {
         // Access the array of photos in the results property
         const photos = data.results;
 
+        // clear previous images from the imagesContainer
+        imagesContainer.innerHTML = "";
+
         // Display URLs of the first 10 photos in the console
         for (let i = 0; i < Math.min(9, photos.length); i++) {
             console.log('Photo URL:', photos[i].urls.full);
             setPhoto(photos[i].urls.full);
         }
-        
+
     } catch (error) {
         console.error('Error fetching data:', error);
     }
 }
 
 
-function setPhoto(imageURL) {
+function setPhoto(imageURL) {  
+
     let div = document.createElement('div');
     div.classList.add('images');
     div.style.backgroundImage = `url(${imageURL})`;
     div.style.backgroundSize = 'cover';
-    // div.innerHTML = `<img
-    // src="${imageURL}">`
 
     imagesContainer.appendChild(div);
 
