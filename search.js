@@ -2,7 +2,10 @@ const body = document.querySelector('body');
 const inputSearch = document.querySelector('#search-query');
 const heading = document.querySelector('#heading');
 const imagesContainer = document.querySelector('.images-container');
+const showMoreButton = document.querySelector('#show-more-btn');
 
+
+let currentPage = 1;
 
 
 // Retrieve the query from local storage
@@ -12,7 +15,13 @@ let userQuery = localStorage.getItem('userQuery');
 (() => {
     inputSearch.value = userQuery;
     heading.innerText = userQuery;
+
+    // clear previous images from the imagesContainer
+    imagesContainer.innerHTML = "";
+    currentPage = 1;
+
     getPhoto();
+
 })();
 
 
@@ -23,7 +32,14 @@ inputSearch.addEventListener('keypress', (e) => {
             console.log(userQuery);
             inputSearch.value = userQuery;
             heading.innerText = userQuery;
+
+            // clear previous images from the imagesContainer
+            imagesContainer.innerHTML = "";
+
+            currentPage = 1;
+
             getPhoto();
+
         }
     }
 });
@@ -32,7 +48,6 @@ inputSearch.addEventListener('keypress', (e) => {
 async function getPhoto() {
     try {
 
-        let currentPage = 1;
         const apiKey = 'I2B_JfYcK7JZrt9SNjgcvCdq89zRMKrNyKIYeV4lN88';
 
         const URL = `https://api.unsplash.com/search/photos?page=${currentPage}&query=${userQuery}&client_id=${apiKey}`;
@@ -42,9 +57,6 @@ async function getPhoto() {
 
         // Access the array of photos in the results property
         const photos = data.results;
-
-        // clear previous images from the imagesContainer
-        imagesContainer.innerHTML = "";
 
         // Display URLs of the first 10 photos in the console
         for (let i = 0; i < Math.min(9, photos.length); i++) {
@@ -58,7 +70,7 @@ async function getPhoto() {
 }
 
 
-function setPhoto(imageURL) {  
+function setPhoto(imageURL) {
 
     let div = document.createElement('div');
     div.classList.add('images');
@@ -68,3 +80,9 @@ function setPhoto(imageURL) {
     imagesContainer.appendChild(div);
 
 }
+
+
+showMoreButton.addEventListener('click', () => {
+    currentPage += 1;
+    getPhoto();
+})
