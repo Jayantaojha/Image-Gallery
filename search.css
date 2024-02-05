@@ -165,19 +165,14 @@ main button{
     font-size: 14px;
     padding: 10px;
     margin-top: 30px;
-    /* width: 30vw; */
     width: 100%;
-    background-color: #33b249;
+    background-color: #000;
     color: #fff;
     outline: none;
     border: none;
     border-radius: 6px;
     cursor: pointer;
     transition: background-color 0.3s ease; 
-}
-
-main button:hover{
-    background-color: #0e7a20;
 }
 
 
