@@ -71,7 +71,6 @@ async function getPhoto() {
 
 
 function setPhoto(imageURL) {
-
     let div = document.createElement('div');
     let downloadDiv = document.createElement('div');
 
@@ -81,21 +80,27 @@ function setPhoto(imageURL) {
 
     downloadDiv.classList.add('download-images');
     downloadDiv.innerHTML = `
-                            <div class="download-images-div" ><i class="fa-solid fa-heart"></i></div>
-                            <div class="download-images-div" ><i class="fa-solid fa-arrow-down"></i></div>
+                            <div class="download-images-div" id="like-icon" ><i class="fa-solid fa-heart"></i></div>
+                            <div class="download-images-div" id="download-icon" ><i class="fa-solid fa-arrow-down"></i></div>
                             `;
 
+    downloadDiv.querySelector("#download-icon").addEventListener('click', () => {
+        // Create a temporary anchor element
+        let downloadAnchor = document.createElement("a");
+        downloadAnchor.href = imageURL;
+        downloadAnchor.download = "downloaded_image.jpg"; // Provide a filename for the downloaded file
+        downloadAnchor.click();
+    });
 
     div.addEventListener('mouseenter', () => {
         div.appendChild(downloadDiv);
-    })
+    });
 
     div.addEventListener('mouseleave', () => {
         div.removeChild(downloadDiv);
-    })
+    });
 
     imagesContainer.appendChild(div);
-
 }
 
 
