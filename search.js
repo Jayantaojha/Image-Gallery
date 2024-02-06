@@ -73,9 +73,26 @@ async function getPhoto() {
 function setPhoto(imageURL) {
 
     let div = document.createElement('div');
+    let downloadDiv = document.createElement('div');
+
     div.classList.add('images');
     div.style.backgroundImage = `url(${imageURL})`;
     div.style.backgroundSize = 'cover';
+
+    downloadDiv.classList.add('download-images');
+    downloadDiv.innerHTML = `
+                            <div class="download-images-div" ><i class="fa-solid fa-heart"></i></div>
+                            <div class="download-images-div" ><i class="fa-solid fa-arrow-down"></i></div>
+                            `;
+
+
+    div.addEventListener('mouseenter', () => {
+        div.appendChild(downloadDiv);
+    })
+
+    div.addEventListener('mouseleave', () => {
+        div.removeChild(downloadDiv);
+    })
 
     imagesContainer.appendChild(div);
 
